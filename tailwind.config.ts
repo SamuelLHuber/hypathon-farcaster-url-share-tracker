@@ -10,6 +10,7 @@ export default {
 	theme: {
 		extend: {
 			colors: {
+				// Semantic color system
 				background: 'var(--background)',
 				foreground: 'var(--foreground)',
 				card: 'var(--card)',
@@ -29,6 +30,31 @@ export default {
 				border: 'var(--border)',
 				input: 'var(--input)',
 				ring: 'var(--ring)',
+				
+				// dTech Vision Brand Colors
+				'corporate-navy': 'var(--corporate-navy)',
+				'brand-purple': 'var(--brand-purple)',
+				'aqua': 'var(--aqua)',
+				'orange': 'var(--orange)',
+				
+				// dTech Vision Neutral Colors
+				'premium-white': 'var(--premium-white)',
+				'off-white': 'var(--off-white)',
+				'light-gray': 'var(--light-gray)',
+				'medium-gray': 'var(--medium-gray)',
+				'sophisticated-gray': 'var(--sophisticated-gray)',
+				'dark-surface': 'var(--dark-surface)',
+				'deep-black': 'var(--deep-black)',
+				
+				// dTech Vision Supporting Purple Family
+				'refined-purple': 'var(--refined-purple)',
+				'accent-lavender': 'var(--accent-lavender)',
+				
+				// dTech Vision Theme Colors
+				'accent-low': 'var(--accent-low)',
+				'accent-high': 'var(--accent-high)',
+				'accent-low-light': 'var(--accent-low-light)',
+				'accent-high-light': 'var(--accent-high-light)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

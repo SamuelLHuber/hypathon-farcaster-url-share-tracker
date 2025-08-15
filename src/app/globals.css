@@ -3,48 +3,77 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --card: #ffffff;
-  --card-foreground: #171717;
-  --popover: #ffffff;
-  --popover-foreground: #171717;
-  --primary: #2563eb;
-  --primary-foreground: #ffffff;
-  --secondary: #f3f4f6;
-  --secondary-foreground: #1f2937;
-  --muted: #f3f4f6;
-  --muted-foreground: #6b7280;
-  --accent: #f3f4f6;
-  --accent-foreground: #1f2937;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: #e5e7eb;
-  --input: #e5e7eb;
-  --ring: #2563eb;
+  /* dTech Vision Core Brand Colors */
+  --corporate-navy: #002195;
+  --brand-purple: #CF58FA;
+  --aqua: #00FDFE;
+  --orange: #FF5B19;
+  
+  /* dTech Vision Neutral Colors */
+  --premium-white: #ffffff;
+  --off-white: #f6f6f7;
+  --light-gray: #eeedee;
+  --medium-gray: #c2c1c3;
+  --sophisticated-gray: #39383a;
+  --dark-surface: #1a1a1a;
+  --deep-black: #000000;
+  
+  /* dTech Vision Supporting Purple Family */
+  --refined-purple: #7b61ff;
+  --accent-lavender: #D1AAD7;
+  
+  /* dTech Vision Light Mode Theme Colors */
+  --accent-low-light: #c7d7f7;
+  --accent-high-light: #182f61;
+  
+  /* Semantic mappings for light mode */
+  --background: var(--premium-white);
+  --foreground: var(--deep-black);
+  --card: var(--premium-white);
+  --card-foreground: var(--deep-black);
+  --popover: var(--premium-white);
+  --popover-foreground: var(--deep-black);
+  --primary: var(--corporate-navy);
+  --primary-foreground: var(--premium-white);
+  --secondary: var(--off-white);
+  --secondary-foreground: var(--corporate-navy);
+  --muted: var(--light-gray);
+  --muted-foreground: var(--medium-gray);
+  --accent: var(--accent-low-light);
+  --accent-foreground: var(--accent-high-light);
+  --destructive: var(--orange);
+  --destructive-foreground: var(--premium-white);
+  --border: var(--light-gray);
+  --input: var(--light-gray);
+  --ring: var(--brand-purple);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --card: #171717;
-    --card-foreground: #ededed;
-    --popover: #171717;
-    --popover-foreground: #ededed;
-    --primary: #3b82f6;
-    --primary-foreground: #ffffff;
-    --secondary: #1f2937;
-    --secondary-foreground: #f3f4f6;
-    --muted: #1f2937;
-    --muted-foreground: #9ca3af;
-    --accent: #1f2937;
-    --accent-foreground: #f3f4f6;
-    --destructive: #ef4444;
-    --destructive-foreground: #ffffff;
-    --border: #374151;
-    --input: #374151;
-    --ring: #3b82f6;
+    /* dTech Vision Dark Mode Theme Colors */
+    --accent-low: #142242;
+    --accent-high: #b4c9f2;
+    
+    /* Semantic mappings for dark mode */
+    --background: var(--deep-black);
+    --foreground: var(--premium-white);
+    --card: var(--dark-surface);
+    --card-foreground: var(--premium-white);
+    --popover: var(--dark-surface);
+    --popover-foreground: var(--premium-white);
+    --primary: var(--brand-purple);
+    --primary-foreground: var(--premium-white);
+    --secondary: var(--sophisticated-gray);
+    --secondary-foreground: var(--light-gray);
+    --muted: var(--sophisticated-gray);
+    --muted-foreground: var(--medium-gray);
+    --accent: var(--accent-low);
+    --accent-foreground: var(--accent-high);
+    --destructive: var(--orange);
+    --destructive-foreground: var(--premium-white);
+    --border: var(--sophisticated-gray);
+    --input: var(--sophisticated-gray);
+    --ring: var(--brand-purple);
   }
 }
 

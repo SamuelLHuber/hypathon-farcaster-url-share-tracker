@@ -124,7 +124,7 @@ export function URLHitsTracker() {
       <div className="w-full max-w-md mx-auto space-y-4">
         <div className="text-center mb-6">
           <h2 className="text-xl font-semibold mb-2">URL Hits Tracker</h2>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-muted-foreground">
             Enter a URL to see how many unique casts mention it
           </p>
         </div>
@@ -153,7 +153,7 @@ export function URLHitsTracker() {
             {isLoading && (
               <Button
                 onClick={handleCancel}
-                className="px-4 bg-red-500 hover:bg-red-600"
+                className="px-4 bg-orange hover:bg-orange/80"
               >
                 Cancel
               </Button>
@@ -162,7 +162,7 @@ export function URLHitsTracker() {
             {!isLoading && (result || error) && (
               <Button
                 onClick={handleClear}
-                className="px-4 bg-gray-500 hover:bg-gray-600"
+                className="px-4 bg-sophisticated-gray hover:bg-medium-gray"
               >
                 Clear
               </Button>
@@ -171,43 +171,43 @@ export function URLHitsTracker() {
         </div>
 
         {isLoading && (
-          <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg animate-pulse">
+          <div className="p-4 bg-accent-low border border-accent-low-light rounded-lg animate-pulse">
             <div className="flex items-center justify-center mb-3">
-              <div className="animate-spin h-6 w-6 border-2 border-blue-500 border-t-transparent rounded-full mr-3" />
-              <p className="text-blue-700 font-medium">{getLoadingMessage()}</p>
+              <div className="animate-spin h-6 w-6 border-2 border-brand-purple border-t-transparent rounded-full mr-3" />
+              <p className="text-accent-high font-medium">{getLoadingMessage()}</p>
             </div>
-            <p className="text-blue-600 text-sm text-center">{getEstimatedTime()}</p>
-            <div className="mt-3 bg-white rounded p-3 border border-blue-100">
+            <p className="text-accent-high text-sm text-center">{getEstimatedTime()}</p>
+            <div className="mt-3 bg-card rounded p-3 border border-border">
               <div className="animate-pulse">
-                <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                <div className="h-6 bg-gray-200 rounded w-1/2"></div>
+                <div className="h-4 bg-muted rounded w-3/4 mb-2"></div>
+                <div className="h-6 bg-muted rounded w-1/2"></div>
               </div>
             </div>
           </div>
         )}
 
         {error && (
-          <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-            <p className="text-red-600 text-sm">{error}</p>
+          <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg">
+            <p className="text-destructive text-sm">{error}</p>
           </div>
         )}
 
         {result && (
-          <div className="p-4 bg-green-50 border border-green-200 rounded-lg transform transition-all duration-300 animate-in fade-in slide-in-from-bottom-2">
-            <h3 className="font-medium text-green-800 mb-2">Results</h3>
+          <div className="p-4 bg-card border border-border rounded-lg transform transition-all duration-300 animate-in fade-in slide-in-from-bottom-2">
+            <h3 className="font-medium text-brand-purple mb-2">Results</h3>
             <div className="space-y-1 text-sm">
-              <p className="text-gray-700">
+              <p className="text-foreground">
                 <span className="font-medium">URL:</span> {result.url}
               </p>
-              <p className="text-gray-700">
+              <p className="text-foreground">
                 <span className="font-medium">Unique Hits:</span> 
-                <span className="text-lg font-bold text-green-600 ml-1 animate-pulse">
+                <span className="text-lg font-bold text-brand-purple ml-1 animate-pulse">
                   {result.unique_hits.toLocaleString()}
                 </span>
               </p>
             </div>
             
-            <div className="mt-3 pt-3 border-t border-green-200">
+            <div className="mt-3 pt-3 border-t border-border">
               <ShareButton
                 buttonText="📢 Share Discovery"
                 cast={{
@@ -216,14 +216,14 @@ export function URLHitsTracker() {
                     `${process.env.NEXT_PUBLIC_APPURL || window.location.origin}`,
                   ],
                 }}
-                className="w-full bg-blue-500 hover:bg-blue-600"
+                className="w-full bg-corporate-navy hover:bg-corporate-navy/80"
               />
             </div>
           </div>
         )}
 
         <div className="text-center">
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-muted-foreground">
             Powered by dTech.vision
           </p>
         </div>

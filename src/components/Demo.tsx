@@ -40,11 +40,12 @@ export default function Demo() {
 
 
   if (!isSDKLoaded) {
-    return <div>Loading...</div>;
+    return <div className="flex items-center justify-center h-screen bg-background text-muted-foreground">Loading...</div>;
   }
 
   return (
     <div
+      className="min-h-screen bg-background"
       style={{
         paddingTop: context?.client.safeAreaInsets?.top ?? 0,
         paddingBottom: context?.client.safeAreaInsets?.bottom ?? 0,

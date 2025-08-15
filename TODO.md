@@ -1,0 +1,5 @@
+- [X] test sharing in the mini app
+- [X] test if caching really works in the app 
+- [X] add proper .well-known/farcaster.json manifest with full app details
+- [X] add nice mini app sharing preview image (static)
+- [ ] add mini app dynamic sharing preview images
