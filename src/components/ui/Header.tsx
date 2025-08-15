@@ -15,7 +15,6 @@ type HeaderProps = {
 export function Header({ neynarUser }: HeaderProps) {
   const { context } = useMiniApp();
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
-  const [hasClickedPfp, setHasClickedPfp] = useState(false);
 
   return (
     <div className="relative">
@@ -26,7 +25,6 @@ export function Header({ neynarUser }: HeaderProps) {
             className="cursor-pointer"
             onClick={() => {
               setIsUserDropdownOpen(!isUserDropdownOpen);
-              setHasClickedPfp(true);
             }}
           >
             {context.user.pfpUrl && (
@@ -41,13 +39,6 @@ export function Header({ neynarUser }: HeaderProps) {
       </div>
       {context?.user && (
         <>
-          {!hasClickedPfp && (
-            <div className="absolute right-0 -bottom-6 text-xs text-primary flex items-center justify-end gap-1 pr-2">
-              <span className="text-[10px]">↑</span> Click PFP!{" "}
-              <span className="text-[10px]">↑</span>
-            </div>
-          )}
-
           {isUserDropdownOpen && (
             <div className="absolute top-full right-0 z-50 w-fit mt-1 bg-card text-card-foreground rounded-lg shadow-lg border border-border">
               <div className="p-3 space-y-2">

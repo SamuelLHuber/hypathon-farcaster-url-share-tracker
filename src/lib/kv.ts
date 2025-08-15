@@ -4,6 +4,7 @@ import { APP_NAME } from "./constants";
 
 // In-memory fallback storage
 const localStore = new Map<string, FrameNotificationDetails>();
+const localStoreHits = new Map<string, number>();
 
 // Use Redis if KV env vars are present, otherwise use in-memory
 const useRedis = process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN;
@@ -58,7 +59,7 @@ export async function getUrlHits(url: string): Promise<number | null> {
   if (redis) {
     return await redis.get<number>(key);
   }
-  return localStore.get(key) as number || null;
+  return localStoreHits.get(key) || null;
 }
 
 export async function setUrlHits(url: string, hits: number): Promise<void> {
@@ -68,10 +69,10 @@ export async function setUrlHits(url: string, hits: number): Promise<void> {
   if (redis) {
     await redis.setex(key, TTL_24_HOURS, hits);
   } else {
-    localStore.set(key, hits);
+    localStoreHits.set(key, hits);
     // Clean up in-memory cache after 24 hours
     setTimeout(() => {
-      localStore.delete(key);
+      localStoreHits.delete(key);
     }, TTL_24_HOURS * 1000);
   }
 }
