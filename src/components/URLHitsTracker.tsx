@@ -3,6 +3,8 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { Button } from "~/components/ui/Button";
 import { Input } from "~/components/ui/input";
+import { ShareButton } from "~/components/ui/Share";
+import { useMiniApp } from "@neynar/react";
 
 interface URLHitsResult {
   url: string;
@@ -19,6 +21,7 @@ export function URLHitsTracker() {
   const [error, setError] = useState("");
   const [elapsedTime, setElapsedTime] = useState(0);
   const abortControllerRef = useRef<AbortController | null>(null);
+  const { context } = useMiniApp();
 
   const handleSubmit = useCallback(async () => {
     if (!url.trim()) {
@@ -204,6 +207,20 @@ export function URLHitsTracker() {
                   {result.unique_hits.toLocaleString()}
                 </span>
               </p>
+            </div>
+            
+            <div className="mt-3 pt-3 border-t border-green-200">
+              <ShareButton
+                buttonText="📢 Share Discovery"
+                cast={{
+                  text: `🔍 Just discovered ${result.url} has ${result.unique_hits.toLocaleString()} unique mentions on Farcaster! Check it out 👇`,
+                  embeds: [
+                    `${process.env.NEXT_PUBLIC_URL || window.location.origin}?utm_source=share-${result.url}&utm_medium=farcaster`,
+                    result.url.startsWith('http') ? result.url : `https://${result.url}`
+                  ]
+                }}
+                className="w-full bg-blue-500 hover:bg-blue-600"
+              />
             </div>
           </div>
         )}
