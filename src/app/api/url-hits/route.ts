@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { db } from '~/db';
 import { sql } from 'drizzle-orm';
+import { getUrlHits, setUrlHits } from '~/lib/kv';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -21,6 +22,16 @@ export async function GET(request: Request) {
   }
 
   try {
+    // Check cache first
+    const cachedHits = await getUrlHits(url);
+    if (cachedHits !== null) {
+      return NextResponse.json({ 
+        url,
+        unique_hits: cachedHits
+      });
+    }
+
+    // Cache miss - query database
     const result = await db.execute(
       sql`
         SELECT COUNT(DISTINCT hash) AS unique_hits
@@ -35,11 +46,19 @@ export async function GET(request: Request) {
       `
     );
 
-    const uniqueHits = result.rows[0]?.unique_hits || 0;
+    const uniqueHits = parseInt(result.rows[0]?.unique_hits as string || '0');
+
+    // Store in cache
+    try {
+      await setUrlHits(url, uniqueHits);
+    } catch (cacheError) {
+      console.error('Failed to cache URL hits:', cacheError);
+      // Continue even if caching fails
+    }
 
     return NextResponse.json({ 
       url,
-      unique_hits: parseInt(uniqueHits as string)
+      unique_hits: uniqueHits
     });
   } catch (error) {
     console.error('Failed to query casts:', error);

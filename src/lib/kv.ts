@@ -48,3 +48,30 @@ export async function deleteUserNotificationDetails(
     localStore.delete(key);
   }
 }
+
+function getUrlHitsKey(url: string): string {
+  return `${APP_NAME}:url-hits:${encodeURIComponent(url)}`;
+}
+
+export async function getUrlHits(url: string): Promise<number | null> {
+  const key = getUrlHitsKey(url);
+  if (redis) {
+    return await redis.get<number>(key);
+  }
+  return localStore.get(key) as number || null;
+}
+
+export async function setUrlHits(url: string, hits: number): Promise<void> {
+  const key = getUrlHitsKey(url);
+  const TTL_24_HOURS = 86400; // 24 hours in seconds
+  
+  if (redis) {
+    await redis.setex(key, TTL_24_HOURS, hits);
+  } else {
+    localStore.set(key, hits);
+    // Clean up in-memory cache after 24 hours
+    setTimeout(() => {
+      localStore.delete(key);
+    }, TTL_24_HOURS * 1000);
+  }
+}
