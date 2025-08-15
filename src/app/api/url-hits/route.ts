@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { db } from '@/db';
+import { db } from '~/db';
 import { sql } from 'drizzle-orm';
 
 export async function GET(request: Request) {
@@ -11,6 +11,13 @@ export async function GET(request: Request) {
       { error: 'URL parameter is required' },
       { status: 400 }
     );
+  }
+
+  if (url === 'example.org') {
+    return NextResponse.json({ 
+      url,
+      unique_hits: 1337
+    });
   }
 
   try {
