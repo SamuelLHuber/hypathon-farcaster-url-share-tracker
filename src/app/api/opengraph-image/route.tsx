@@ -44,15 +44,55 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const hits = await getUrlHits(url) || 0;
+  const hits = await getUrlHits(url);
   const domain = extractDomain(url);
+  
+  // Show "TRY NOW" if no cache hit
+  if (hits === null || hits === 0) {
+    return new ImageResponse(
+      (
+        <div tw="flex h-full w-full flex-col justify-center items-center relative" style={{ background: 'linear-gradient(135deg, #002195 0%, #CF58FA 50%, #00FDFE 100%)' }}>
+          <div tw="absolute top-8 left-8 opacity-80 text-2xl" style={{ color: '#ffffff' }}>
+            Farcaster Stats
+          </div>
+          
+          <div tw="flex flex-col items-center justify-center">
+            <div tw="text-9xl mb-4">
+              🌟
+            </div>
+            
+            <div tw="flex flex-col items-center mb-8">
+              <h1 tw="text-7xl font-bold mb-2 text-center" style={{ color: '#ffffff' }}>
+                TRY NOW
+              </h1>
+              <p tw="text-4xl mb-4" style={{ color: '#ffffff', opacity: 0.9 }}>
+                Be the first to share
+              </p>
+            </div>
+            
+            <div tw="flex flex-col items-center">
+              <h2 tw="text-5xl font-semibold text-center max-w-4xl" style={{ color: '#ffffff' }}>
+                {domain}
+              </h2>
+            </div>
+          </div>
+          
+          <div tw="absolute bottom-8 right-8 opacity-60 text-2xl" style={{ color: '#ffffff' }}>
+            🦅 Powered by dTech.vision
+          </div>
+        </div>
+      ),
+      { width: 1200, height: 800 }
+    );
+  }
+
   const formattedHits = formatHitCount(hits);
   const emoji = getMilestoneEmoji(hits);
 
   return new ImageResponse(
     (
-      <div tw="flex h-full w-full flex-col justify-center items-center relative bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-700">
-        <div tw="absolute top-8 left-8 text-white opacity-60 text-2xl">
+      <div tw="flex h-full w-full flex-col justify-center items-center relative" style={{ background: 'linear-gradient(135deg, #002195 0%, #CF58FA 50%, #7b61ff 100%)' }}>
+        <div tw="absolute top-8 left-8 opacity-80 text-2xl" style={{ color: '#ffffff' }}>
           Farcaster Stats
         </div>
         
@@ -62,25 +102,25 @@ export async function GET(request: NextRequest) {
           </div>
           
           <div tw="flex flex-col items-center mb-8">
-            <h1 tw="text-7xl font-bold text-white mb-2 text-center">
+            <h1 tw="text-7xl font-bold mb-2 text-center" style={{ color: '#ffffff' }}>
               {formattedHits}
             </h1>
-            <p tw="text-4xl text-white opacity-90 mb-4">
+            <p tw="text-4xl mb-4" style={{ color: '#ffffff', opacity: 0.9 }}>
               {hits === 1 ? 'view' : 'views'}
             </p>
           </div>
           
           <div tw="flex flex-col items-center">
-            <p tw="text-3xl text-white opacity-70 mb-2">
+            <p tw="text-3xl mb-2" style={{ color: '#ffffff', opacity: 0.7 }}>
               on
             </p>
-            <h2 tw="text-5xl font-semibold text-white text-center max-w-4xl">
+            <h2 tw="text-5xl font-semibold text-center max-w-4xl" style={{ color: '#ffffff' }}>
               {domain}
             </h2>
           </div>
         </div>
         
-        <div tw="absolute bottom-8 right-8 text-white opacity-60 text-2xl">
+        <div tw="absolute bottom-8 right-8 opacity-60 text-2xl" style={{ color: '#ffffff' }}>
           🦅 Powered by dTech.vision
         </div>
       </div>
