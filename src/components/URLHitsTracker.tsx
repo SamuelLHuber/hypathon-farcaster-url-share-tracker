@@ -209,11 +209,11 @@ export function URLHitsTracker() {
             
             <div className="mt-3 pt-3 border-t border-border">
               <ShareButton
-                buttonText="📢 Share Discovery"
+                buttonText="📢 Share Your Success"
                 cast={{
-                  text: `🔍 Just discovered https://${result.url} has gone viral with ${result.unique_hits.toLocaleString()} unique mentions on Farcaster and Base! Check your domain! 👇 ${process.env.NEXT_PUBLIC_APPURL || window.location.origin}`,
+                  text: `🔍 Just discovered https://${result.url} has gone viral with ${result.unique_hits.toLocaleString()} unique mentions on Farcaster and Base! Check your domain! 👇 ${process.env.NEXT_PUBLIC_APPURL || window.location.origin}?url=${result.url}`,
                   embeds: [
-                    `${process.env.NEXT_PUBLIC_APPURL || window.location.origin}`,
+                    `${process.env.NEXT_PUBLIC_APPURL || window.location.origin}?url=${result.url}`,
                   ],
                 }}
                 className="w-full bg-corporate-navy hover:bg-corporate-navy/80"
