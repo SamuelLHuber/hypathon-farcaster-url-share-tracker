@@ -211,7 +211,7 @@ export function URLHitsTracker() {
               <ShareButton
                 buttonText="📢 Share Your Success"
                 cast={{
-                  text: `🔍 Just discovered https://${result.url} has gone viral with ${result.unique_hits.toLocaleString()} unique mentions on Farcaster and Base! Check your domain! 👇 ${process.env.NEXT_PUBLIC_APPURL || window.location.origin}?url=${result.url}`,
+                  text: `🔍 Just discovered https://${result.url} has gone viral with ${result.unique_hits.toLocaleString()} unique mentions on Farcaster and Base! Check your domain! 👇`,
                   embeds: [
                     `${process.env.NEXT_PUBLIC_APPURL || window.location.origin}?url=${result.url}`,
                   ],
